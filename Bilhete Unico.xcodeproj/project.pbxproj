@@ -14,6 +14,8 @@
 		80BD0CA922F65EE1003267C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80BD0CA722F65EE1003267C7 /* LaunchScreen.storyboard */; };
 		80BD0CB122F6648D003267C7 /* LogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD0CB022F6648D003267C7 /* LogTableViewCell.swift */; };
 		80BD0CB322F67AE4003267C7 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD0CB222F67AE4003267C7 /* Trip.swift */; };
+		80FA99E122F75CB500B1C510 /* ArchiveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA99E022F75CB500B1C510 /* ArchiveUtil.swift */; };
+		80FA99E422F7655B00B1C510 /* FirstLaunchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA99E322F7655B00B1C510 /* FirstLaunchUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		80BD0CAA22F65EE1003267C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80BD0CB022F6648D003267C7 /* LogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewCell.swift; sourceTree = "<group>"; };
 		80BD0CB222F67AE4003267C7 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		80FA99E022F75CB500B1C510 /* ArchiveUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveUtil.swift; sourceTree = "<group>"; };
+		80FA99E322F7655B00B1C510 /* FirstLaunchUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 				80BD0CBC22F681F6003267C7 /* Resources */,
 				80BD0CB922F67E93003267C7 /* View */,
 				80BD0CB822F67C42003267C7 /* Model */,
+				80FA99E222F7652100B1C510 /* Utils */,
 			);
 			path = "Bilhete Unico";
 			sourceTree = "<group>";
@@ -100,6 +105,15 @@
 				80BD0CAA22F65EE1003267C7 /* Info.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		80FA99E222F7652100B1C510 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				80FA99E022F75CB500B1C510 /* ArchiveUtil.swift */,
+				80FA99E322F7655B00B1C510 /* FirstLaunchUtil.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,10 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80FA99E422F7655B00B1C510 /* FirstLaunchUtil.swift in Sources */,
 				80BD0CB322F67AE4003267C7 /* Trip.swift in Sources */,
 				80BD0CB122F6648D003267C7 /* LogTableViewCell.swift in Sources */,
 				80BD0CA122F65EE0003267C7 /* ViewController.swift in Sources */,
 				80BD0C9F22F65EE0003267C7 /* AppDelegate.swift in Sources */,
+				80FA99E122F75CB500B1C510 /* ArchiveUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

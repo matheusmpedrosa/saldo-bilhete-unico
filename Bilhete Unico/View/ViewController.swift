@@ -8,28 +8,6 @@
 
 import UIKit
 
-final class FirstLaunch {
-    
-    let wasLaunchedBefore: Bool
-    var isFirstLaunch: Bool {
-        return !wasLaunchedBefore
-    }
-    
-    init(getWasLaunchedBefore: () -> Bool,
-         setWasLaunchedBefore: (Bool) -> ()) {
-        let wasLaunchedBefore = getWasLaunchedBefore()
-        self.wasLaunchedBefore = wasLaunchedBefore
-        if !wasLaunchedBefore {
-            setWasLaunchedBefore(true)
-        }
-    }
-    
-    convenience init(userDefaults: UserDefaults, key: String) {
-        self.init(getWasLaunchedBefore: { userDefaults.bool(forKey: key) },
-                  setWasLaunchedBefore: { userDefaults.set($0, forKey: key) })
-    }
-}
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var balanceLabel: UILabel!
@@ -43,17 +21,22 @@ class ViewController: UIViewController {
     }
 
     let defaults = UserDefaults.standard
-    var currentBalance: Double = Double()
+    var currentBalance: Float64 = Float64()
     var trips: [Trip] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let oldTrips = ArchiveUtil.loadTrips() {
+            trips = oldTrips
+        }
         
         setupLayout()
         
         let firstLaunch = FirstLaunch(userDefaults: .standard, key: "com.any-suggestion.FirstLaunch.WasLaunchedBefore")
         if firstLaunch.isFirstLaunch {
             //change currentBalance to your actual current balance
+            //alert goes here
             currentBalance = 23.58
             defaults.set(currentBalance, forKey: "CurrentBalance")
             self.balanceLabel.text = String(format: "%.2f", currentBalance)
@@ -84,9 +67,13 @@ class ViewController: UIViewController {
 
     @IBAction func addCommomFare(_ sender: Any) {
         let today: Date = Date()
-        let newTrip: Trip = Trip(type: "Comum", value: 4.30, date: today)
+        let value: Float64 = 4.30
+        let newTrip: Trip = Trip(type: "Comum", value: value, date: today)
         
         trips.append(newTrip)
+        ArchiveUtil.saveTrips(trips: trips)
+//        defaults.set(trips, forKey: "TripsArray")
+        
         if let value = newTrip.value {
             currentBalance = currentBalance - value
             defaults.set(currentBalance, forKey: "CurrentBalance")
@@ -97,9 +84,12 @@ class ViewController: UIViewController {
     
     @IBAction func addVRFare(_ sender: Any) {
         let today: Date = Date()
-        let newTrip: Trip = Trip(type: "Vale Transporte", value: 3.76, date: today)
+        let value: Float64 = 3.76
+        let newTrip: Trip = Trip(type: "Vale Transporte", value: value, date: today)
         
         trips.append(newTrip)
+        ArchiveUtil.saveTrips(trips: trips)
+//        defaults.set(trips, forKey: "TripsArray")
         
         if let value = newTrip.value {
             currentBalance = currentBalance - value
@@ -124,13 +114,18 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trips.count
+        if let numberOfTrips = ArchiveUtil.loadTrips()?.count {
+            return numberOfTrips
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LogTableViewCell
         
-        cell.setup(trip: trips[indexPath.row])
+        if let archievedTrips = ArchiveUtil.loadTrips() {
+            cell.setup(trip: archievedTrips[indexPath.row])
+        }
         
         return cell
     }
