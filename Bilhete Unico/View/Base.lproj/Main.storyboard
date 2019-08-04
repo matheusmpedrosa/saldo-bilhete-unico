@@ -37,10 +37,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="VCu-6C-lBR">
-                                <rect key="frame" x="16" y="205" width="382" height="50"/>
+                                <rect key="frame" x="16" y="205" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaO-55-k3o">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="- R$ 4,30"/>
                                         <connections>
@@ -48,7 +48,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vA-wX-ywr">
-                                        <rect key="frame" x="199" y="0.0" width="183" height="50"/>
+                                        <rect key="frame" x="199" y="0.0" width="183" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="- R$ 3,76"/>
                                         <connections>
@@ -58,12 +58,12 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4vA-wX-ywr" firstAttribute="height" secondItem="VCu-6C-lBR" secondAttribute="height" id="3Gv-OW-oIC"/>
-                                    <constraint firstAttribute="height" constant="50" id="Zu0-31-KaV"/>
+                                    <constraint firstAttribute="height" constant="40" id="Zu0-31-KaV"/>
                                     <constraint firstItem="jaO-55-k3o" firstAttribute="height" secondItem="VCu-6C-lBR" secondAttribute="height" id="eOC-NF-WN7"/>
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="rtk-0v-ZIR">
-                                <rect key="frame" x="0.0" y="271" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="261" width="414" height="635"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="DRb-N5-KFr" detailTextLabel="ono-rx-hIJ" style="IBUITableViewCellStyleValue1" id="msT-KU-oG9" customClass="LogTableViewCell" customModule="Bilhete_Unico" customModuleProvider="target">
