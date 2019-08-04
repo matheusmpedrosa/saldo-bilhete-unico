@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func addBalance(_ sender: Any) {
-        presentAlertWithOptions(title: "Adicionar fundos", message: "Escolha o valor que deseja adicionar", style: .actionSheet, options: "R$ 50,00", "R$ 100,00", "Cancelar") { (input) in
+        presentAlertWithOptions(title: "Adicionar fundos", message: "Escolha o valor que deseja adicionar", style: .actionSheet, options: "R$ 50,00", "R$ 100,00", "R$ 150,00", "R$ 200,00", "R$ 300,00", "R$ 500,00", "Cancelar") { (input) in
             print("\(input) foram adicionados")
             var balance = self.defaults.double(forKey: "CurrentBalance")
             balance = balance + input

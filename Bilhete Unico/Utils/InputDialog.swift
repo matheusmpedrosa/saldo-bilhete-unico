@@ -46,6 +46,14 @@ extension UIViewController {
                     completion(50.0)
                 case 1:
                     completion(100.0)
+                case 2:
+                    completion(150.0)
+                case 3:
+                    completion(200.0)
+                case 4:
+                    completion(300.0)
+                case 5:
+                    completion(500.00)
                 default:
                     print("algo deu errado no alerta")
                 }
