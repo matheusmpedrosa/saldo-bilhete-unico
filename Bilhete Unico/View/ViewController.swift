@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     //MARK: Outlets
     @IBOutlet weak var addBalanceButton: UIBarButtonItem!
+    @IBOutlet weak var cleanAllData: UIBarButtonItem!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var editBalanceButton: UIButton!
     @IBOutlet weak var commomFareButton: UIButton!
@@ -100,6 +101,17 @@ class ViewController: UIViewController {
             balance = balance + input
             
             self.setNewBalance(with: balance)
+        }
+    }
+    
+    @IBAction func cleanAllData(_ sender: Any) {
+        presentAlertWithOptions(title: "Apagar dados", message: "Deseja realmente apagar todas as informações?", style: .alert, options: "Cancelar", "Sim, apagar") { (input) in
+            if input == 100.0 { //retorno para "Sim, apagar"
+                self.setNewBalance(with: 0.0)
+                self.trips.removeAll()
+                ArchiveUtil.saveTrips(trips: self.trips)
+                self.tableView.reloadData()
+            }
         }
     }
     

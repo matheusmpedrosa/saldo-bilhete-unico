@@ -18,17 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo atual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BW8-Ss-Ywe">
-                                <rect key="frame" x="16" y="104" width="76" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SALDO ATUAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BW8-Ss-Ywe">
+                                <rect key="frame" x="16" y="104" width="76.5" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="iXd-nb-cSf"/>
+                                    <constraint firstAttribute="height" constant="16" id="iXd-nb-cSf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00,00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3J-Q6-abr">
-                                <rect key="frame" x="55" y="144" width="137.5" height="45"/>
+                                <rect key="frame" x="55" y="136" width="137.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="68C-uz-l0s"/>
                                 </constraints>
@@ -37,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="VCu-6C-lBR">
-                                <rect key="frame" x="16" y="205" width="382" height="40"/>
+                                <rect key="frame" x="16" y="197" width="382" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaO-55-k3o">
                                         <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
@@ -63,7 +63,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="rtk-0v-ZIR">
-                                <rect key="frame" x="0.0" y="261" width="414" height="635"/>
+                                <rect key="frame" x="0.0" y="253" width="414" height="643"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="DRb-N5-KFr" detailTextLabel="ono-rx-hIJ" style="IBUITableViewCellStyleValue1" id="msT-KU-oG9" customClass="LogTableViewCell" customModule="Bilhete_Unico" customModuleProvider="target">
@@ -93,7 +93,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-xe-u69">
-                                <rect key="frame" x="358" y="165" width="40" height="24"/>
+                                <rect key="frame" x="358" y="157" width="40" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="40Z-6f-Ilj"/>
                                 </constraints>
@@ -103,7 +103,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-jo-7DF">
-                                <rect key="frame" x="16" y="159" width="31" height="30"/>
+                                <rect key="frame" x="16" y="151" width="31" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -130,6 +130,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="QSk-VT-9zm">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="ao0-I7-ENl">
+                            <color key="tintColor" red="0.93333333330000001" green="0.28235294119999998" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cleanAllData:" destination="BYZ-38-t0r" id="DPX-LN-ZKj"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zSo-7h-8Nb">
                             <connections>
                                 <action selector="addBalance:" destination="BYZ-38-t0r" id="LNX-Ul-jpT"/>
@@ -139,6 +145,7 @@
                     <connections>
                         <outlet property="addBalanceButton" destination="zSo-7h-8Nb" id="28H-6a-tO4"/>
                         <outlet property="balanceLabel" destination="l3J-Q6-abr" id="eLr-LY-Pez"/>
+                        <outlet property="cleanAllData" destination="ao0-I7-ENl" id="p09-ev-uTu"/>
                         <outlet property="commomFareButton" destination="jaO-55-k3o" id="Uvw-Vw-7nB"/>
                         <outlet property="editBalanceButton" destination="gyT-xe-u69" id="H67-y7-s9s"/>
                         <outlet property="tableView" destination="rtk-0v-ZIR" id="p1h-K9-J1h"/>

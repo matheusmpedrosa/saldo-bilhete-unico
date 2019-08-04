@@ -44,12 +44,10 @@ extension UIViewController {
                 switch index {
                 case 0:
                     completion(50.0)
-                    print("index 0")
                 case 1:
                     completion(100.0)
-                    print("index 1")
                 default:
-                    fatalError("Algo deu errado no alerta")
+                    print("algo deu errado no alerta")
                 }
                 
             })
@@ -60,7 +58,7 @@ extension UIViewController {
             imageView.frame = CGRect(x: 25, y: 18, width: 24, height: 24)
             
             if options[index] == "Cancelar" {
-                alertController.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
             } else {
                 action.setValue(imageView.image, forKey: "image")
                 alertController.addAction(action)
