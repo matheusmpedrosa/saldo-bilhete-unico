@@ -23,6 +23,7 @@ class ViewController: UIViewController {
 
     let defaults = UserDefaults.standard
     var currentBalance: Float64 = Float64()
+    let today: Date = Date()
     var trips: [Trip] = []
     
     
@@ -53,7 +54,7 @@ class ViewController: UIViewController {
     }
     
     fileprivate func checkForFirstLoad() {
-        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "com.any-suggestion.FirstLaunch.WasLaunchedBefore")
+        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "FirstLaunch")
         if firstLaunch.isFirstLaunch {
             //change currentBalance to your actual current balance
             //alert goes here
@@ -74,13 +75,10 @@ class ViewController: UIViewController {
 
     //MARK: Actions
     @IBAction func addCommomFare(_ sender: Any) {
-        let today: Date = Date()
-        let value: Float64 = 4.30
-        let newTrip: Trip = Trip(type: "Comum", value: value, date: today)
+        let newTrip: Trip = Trip(type: .commom, value: .commom, date: today)
         
         trips.append(newTrip)
         ArchiveUtil.saveTrips(trips: trips)
-//        defaults.set(trips, forKey: "TripsArray")
         
         if let value = newTrip.value {
             currentBalance = currentBalance - value
@@ -91,13 +89,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addVRFare(_ sender: Any) {
-        let today: Date = Date()
-        let value: Float64 = 3.76
-        let newTrip: Trip = Trip(type: "Vale Transporte", value: value, date: today)
+        let newTrip: Trip = Trip(type: .valeTransporte, value: .valeTransporte, date: today)
         
         trips.append(newTrip)
         ArchiveUtil.saveTrips(trips: trips)
-//        defaults.set(trips, forKey: "TripsArray")
         
         if let value = newTrip.value {
             currentBalance = currentBalance - value
@@ -110,11 +105,10 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date: Date = Date()
         let formater: DateFormatter = DateFormatter()
         formater.dateFormat = "dd/MM"
         
-        let result = formater.string(from: date)
+        let result = formater.string(from: today)
         
         return result
     }
