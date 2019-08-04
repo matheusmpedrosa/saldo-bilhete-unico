@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var addBalanceButton: UIBarButtonItem!
     @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var editBalanceButton: UIButton!
     @IBOutlet weak var commomFareButton: UIButton!
     @IBOutlet weak var voucherFareButton: UIButton!
     @IBOutlet weak var tableView: UITableView! {
@@ -54,29 +55,34 @@ class ViewController: UIViewController {
         self.voucherFareButton.layer.borderColor = borderColor
     }
     
+    fileprivate func setNewBalance(with newValue: Float64) {
+        self.currentBalance = newValue
+        self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
+        self.defaults.set(self.currentBalance, forKey: "CurrentBalance")
+    }
+    
+    fileprivate func askUserForCurrentBalance() {
+        //change currentBalance to your actual current balance
+        //alert goes here
+        showInputDialog(title: "Parece que é sua primeira vez por aqui!", subtitle: "Qual o valor do seu saldo atual?", actionTitle: "Continuar", cancelTitle: "Cancelar", inputPlaceholder: "50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input: String?) in
+            if let input = input {
+                if let convertedInput = Double(input) {
+                    self.setNewBalance(with: convertedInput)
+                } else {
+                    self.presentAlertWithOptions(title: "Valor inválido", message: "Aplique o valor desejado clicando em Editar", style: .alert, options: "Ok", completion: { (input) in
+                    })
+                    self.setNewBalance(with: 0.0)
+                }
+            }
+        }
+    }
+    
     fileprivate func checkForFirstLoad() {
         let firstLaunch = FirstLaunch(userDefaults: .standard, key: "FirstLaunch")
         if firstLaunch.isFirstLaunch {
-            //change currentBalance to your actual current balance
-            //alert goes here
-            showInputDialog(title: "Parece que é sua primeira vez por aqui!", subtitle: "Qual o valor do seu saldo atual?", actionTitle: "Continuar", cancelTitle: "Cancelar", inputPlaceholder: "50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input: String?) in
-                if let input = input {
-                    if let convertedInput = Double(input) {
-                        self.currentBalance = convertedInput
-                        self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
-                        self.defaults.set(self.currentBalance, forKey: "CurrentBalance")
-                        print("The item is valued at: \(convertedInput)")
-                    } else {
-                        self.currentBalance = 0.0
-                        self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
-                        self.defaults.set(self.currentBalance, forKey: "CurrentBalance")
-                        print("Not a valid number: \(input)")
-                    }
-                }
-            }
+            askUserForCurrentBalance()
         } else {
-            currentBalance = defaults.double(forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", currentBalance)
+            setNewBalance(with: defaults.double(forKey: "CurrentBalance"))
         }
     }
     
@@ -86,19 +92,30 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func addMoreBalance(_ sender: Any) {
+    //MARK: Actions
+    @IBAction func addBalance(_ sender: Any) {
         presentAlertWithOptions(title: "Adicionar fundos", message: "Escolha o valor que deseja adicionar", style: .actionSheet, options: "R$ 50,00", "R$ 100,00", "Cancelar") { (input) in
             print("\(input) foram adicionados")
             var balance = self.defaults.double(forKey: "CurrentBalance")
             balance = balance + input
             
-            self.currentBalance = balance
-            self.defaults.set(balance, forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
+            self.setNewBalance(with: balance)
         }
     }
     
-    //MARK: Actions
+    @IBAction func editBalance(_ sender: Any) {
+        showInputDialog(title: "Editar saldo", subtitle: "Digite o valor desejado", actionTitle: "Pronto", cancelTitle: "Cancelar", inputPlaceholder: "R$ 50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input) in
+            if let input = input {
+                if let convertedInput = Double(input) {
+                    self.setNewBalance(with: convertedInput)
+                } else {
+                    self.presentAlertWithOptions(title: "Valor inválido", message: "Aplique o valor desejado clicando em Editar", style: .alert, options: "Ok", completion: { (input) in
+                    })
+                }
+            }
+        }
+    }
+    
     @IBAction func addCommomFare(_ sender: Any) {
         let newTrip: Trip = Trip(type: .commom, value: .commom, date: today)
         
@@ -106,9 +123,8 @@ class ViewController: UIViewController {
         ArchiveUtil.saveTrips(trips: trips)
         
         if let value = newTrip.value {
-            currentBalance = currentBalance - value
-            defaults.set(currentBalance, forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", currentBalance)
+            let newBalance = currentBalance - value
+            setNewBalance(with: newBalance)
         }
         tableView.reloadData()
     }
@@ -120,9 +136,8 @@ class ViewController: UIViewController {
         ArchiveUtil.saveTrips(trips: trips)
         
         if let value = newTrip.value {
-            currentBalance = currentBalance - value
-            defaults.set(currentBalance, forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", currentBalance)
+            let newBalance = currentBalance - value
+            setNewBalance(with: newBalance)
         }
         tableView.reloadData()
     }
@@ -132,10 +147,16 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let formater: DateFormatter = DateFormatter()
         formater.dateFormat = "dd/MM"
+//        let result = formater.string(from: today)
+
+        if trips.count > 0 {
+            if let date = trips.first?.date {
+                let result = formater.string(from: date)
+                return result
+            }
+        }
         
-        let result = formater.string(from: today)
-        
-        return result
+        return ""
     }
 }
 

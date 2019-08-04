@@ -27,8 +27,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23,58" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3J-Q6-abr">
-                                <rect key="frame" x="55" y="144" width="134" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00,00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3J-Q6-abr">
+                                <rect key="frame" x="55" y="144" width="137.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="68C-uz-l0s"/>
                                 </constraints>
@@ -92,12 +92,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-xe-u69">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-xe-u69">
                                 <rect key="frame" x="358" y="165" width="40" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="40Z-6f-Ilj"/>
                                 </constraints>
                                 <state key="normal" title="Editar"/>
+                                <connections>
+                                    <action selector="editBalance:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lax-HR-COM"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-jo-7DF">
                                 <rect key="frame" x="16" y="159" width="31" height="30"/>
@@ -129,7 +132,7 @@
                     <navigationItem key="navigationItem" id="QSk-VT-9zm">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zSo-7h-8Nb">
                             <connections>
-                                <action selector="addMoreBalance:" destination="BYZ-38-t0r" id="dOd-fc-ylq"/>
+                                <action selector="addBalance:" destination="BYZ-38-t0r" id="LNX-Ul-jpT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -137,6 +140,7 @@
                         <outlet property="addBalanceButton" destination="zSo-7h-8Nb" id="28H-6a-tO4"/>
                         <outlet property="balanceLabel" destination="l3J-Q6-abr" id="eLr-LY-Pez"/>
                         <outlet property="commomFareButton" destination="jaO-55-k3o" id="Uvw-Vw-7nB"/>
+                        <outlet property="editBalanceButton" destination="gyT-xe-u69" id="H67-y7-s9s"/>
                         <outlet property="tableView" destination="rtk-0v-ZIR" id="p1h-K9-J1h"/>
                         <outlet property="voucherFareButton" destination="4vA-wX-ywr" id="sTB-nf-Uac"/>
                     </connections>

@@ -49,8 +49,7 @@ extension UIViewController {
                     completion(100.0)
                     print("index 1")
                 default:
-                    completion(1000000.0)
-                    print("default")
+                    fatalError("Algo deu errado no alerta")
                 }
                 
             })
