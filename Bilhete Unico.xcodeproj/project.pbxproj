@@ -16,6 +16,7 @@
 		80BD0CB322F67AE4003267C7 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD0CB222F67AE4003267C7 /* Trip.swift */; };
 		80FA99E122F75CB500B1C510 /* ArchiveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA99E022F75CB500B1C510 /* ArchiveUtil.swift */; };
 		80FA99E422F7655B00B1C510 /* FirstLaunchUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA99E322F7655B00B1C510 /* FirstLaunchUtil.swift */; };
+		80FA99E622F76CB400B1C510 /* InputDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FA99E522F76CB400B1C510 /* InputDialog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		80BD0CB222F67AE4003267C7 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		80FA99E022F75CB500B1C510 /* ArchiveUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveUtil.swift; sourceTree = "<group>"; };
 		80FA99E322F7655B00B1C510 /* FirstLaunchUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunchUtil.swift; sourceTree = "<group>"; };
+		80FA99E522F76CB400B1C510 /* InputDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDialog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				80FA99E022F75CB500B1C510 /* ArchiveUtil.swift */,
 				80FA99E322F7655B00B1C510 /* FirstLaunchUtil.swift */,
+				80FA99E522F76CB400B1C510 /* InputDialog.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80FA99E422F7655B00B1C510 /* FirstLaunchUtil.swift in Sources */,
+				80FA99E622F76CB400B1C510 /* InputDialog.swift in Sources */,
 				80BD0CB322F67AE4003267C7 /* Trip.swift in Sources */,
 				80BD0CB122F6648D003267C7 /* LogTableViewCell.swift in Sources */,
 				80BD0CA122F65EE0003267C7 /* ViewController.swift in Sources */,

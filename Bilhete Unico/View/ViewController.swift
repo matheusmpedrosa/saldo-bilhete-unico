@@ -58,9 +58,21 @@ class ViewController: UIViewController {
         if firstLaunch.isFirstLaunch {
             //change currentBalance to your actual current balance
             //alert goes here
-            currentBalance = 23.58
-            defaults.set(currentBalance, forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", currentBalance)
+            showInputDialog(title: "Parece que é sua primeira vez por aqui!", subtitle: "Qual o valor do seu saldo atual?", actionTitle: "Continuar", cancelTitle: "Cancelar", inputPlaceholder: "50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input: String?) in
+                if let input = input {
+                    if let convertedInput = Double(input) {
+                        self.currentBalance = convertedInput
+                        self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
+                        self.defaults.set(self.currentBalance, forKey: "CurrentBalance")
+                        print("The item is valued at: \(convertedInput)")
+                    } else {
+                        self.currentBalance = 0.0
+                        self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
+                        self.defaults.set(self.currentBalance, forKey: "CurrentBalance")
+                        print("Not a valid number: \(input)")
+                    }
+                }
+            }
         } else {
             currentBalance = defaults.double(forKey: "CurrentBalance")
             self.balanceLabel.text = String(format: "%.2f", currentBalance)
