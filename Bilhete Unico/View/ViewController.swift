@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         //Balance
         currentBalance = defaults.double(forKey: "CurrentBalance")
-        self.balanceLabel.text = currentBalance.description
+        self.balanceLabel.text = String(format: "%.2f", currentBalance)
         
         //Buttons
         let cornerRadius: CGFloat = 4
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         trips.append(newTrip)
         if let value = newTrip.value {
             currentBalance = currentBalance - value
-            self.balanceLabel.text = currentBalance.description
+            self.balanceLabel.text = String(format: "%.2f", currentBalance)
         }
         tableView.reloadData()
     }
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         
         if let value = newTrip.value {
             currentBalance = currentBalance - value
-            self.balanceLabel.text = currentBalance.description
+            self.balanceLabel.text = String(format: "%.2f", currentBalance)
         }
         tableView.reloadData()
     }

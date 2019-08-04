@@ -42,7 +42,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaO-55-k3o">
                                         <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="+ R$ 4,30"/>
+                                        <state key="normal" title="- R$ 4,30"/>
                                         <connections>
                                             <action selector="addCommomFare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvp-df-zMX"/>
                                         </connections>
@@ -50,7 +50,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vA-wX-ywr">
                                         <rect key="frame" x="199" y="0.0" width="183" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="+ R$ 3,76"/>
+                                        <state key="normal" title="- R$ 3,76"/>
                                         <connections>
                                             <action selector="addVRFare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5nE-8n-go7"/>
                                         </connections>
