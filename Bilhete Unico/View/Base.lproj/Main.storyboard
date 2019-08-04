@@ -126,8 +126,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QSk-VT-9zm"/>
+                    <navigationItem key="navigationItem" id="QSk-VT-9zm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zSo-7h-8Nb">
+                            <connections>
+                                <action selector="addMoreBalance:" destination="BYZ-38-t0r" id="dOd-fc-ylq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addBalanceButton" destination="zSo-7h-8Nb" id="28H-6a-tO4"/>
                         <outlet property="balanceLabel" destination="l3J-Q6-abr" id="eLr-LY-Pez"/>
                         <outlet property="commomFareButton" destination="jaO-55-k3o" id="Uvw-Vw-7nB"/>
                         <outlet property="tableView" destination="rtk-0v-ZIR" id="p1h-K9-J1h"/>

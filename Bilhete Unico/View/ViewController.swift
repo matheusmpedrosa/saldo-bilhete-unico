@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     //MARK: Outlets
+    @IBOutlet weak var addBalanceButton: UIBarButtonItem!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var commomFareButton: UIButton!
     @IBOutlet weak var voucherFareButton: UIButton!
@@ -84,7 +85,19 @@ class ViewController: UIViewController {
             trips = oldTrips
         }
     }
-
+    
+    @IBAction func addMoreBalance(_ sender: Any) {
+        presentAlertWithOptions(title: "Adicionar fundos", message: "Escolha o valor que deseja adicionar", style: .actionSheet, options: "R$ 50,00", "R$ 100,00", "Cancelar") { (input) in
+            print("\(input) foram adicionados")
+            var balance = self.defaults.double(forKey: "CurrentBalance")
+            balance = balance + input
+            
+            self.currentBalance = balance
+            self.defaults.set(balance, forKey: "CurrentBalance")
+            self.balanceLabel.text = String(format: "%.2f", self.currentBalance)
+        }
+    }
+    
     //MARK: Actions
     @IBAction func addCommomFare(_ sender: Any) {
         let newTrip: Trip = Trip(type: .commom, value: .commom, date: today)
