@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK: Outlets
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var commomFareButton: UIButton!
     @IBOutlet weak var voucherFareButton: UIButton!
@@ -24,27 +25,13 @@ class ViewController: UIViewController {
     var currentBalance: Float64 = Float64()
     var trips: [Trip] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let oldTrips = ArchiveUtil.loadTrips() {
-            trips = oldTrips
-        }
-        
         setupLayout()
-        
-        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "com.any-suggestion.FirstLaunch.WasLaunchedBefore")
-        if firstLaunch.isFirstLaunch {
-            //change currentBalance to your actual current balance
-            //alert goes here
-            currentBalance = 23.58
-            defaults.set(currentBalance, forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", currentBalance)
-        } else {
-            currentBalance = defaults.double(forKey: "CurrentBalance")
-            self.balanceLabel.text = String(format: "%.2f", currentBalance)
-        }
-        
+        checkForFirstLoad()
+        loadOldTrips()
     }
     
     fileprivate func setupLayout() {
@@ -64,7 +51,28 @@ class ViewController: UIViewController {
         self.voucherFareButton.layer.borderWidth = borderWidth
         self.voucherFareButton.layer.borderColor = borderColor
     }
+    
+    fileprivate func checkForFirstLoad() {
+        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "com.any-suggestion.FirstLaunch.WasLaunchedBefore")
+        if firstLaunch.isFirstLaunch {
+            //change currentBalance to your actual current balance
+            //alert goes here
+            currentBalance = 23.58
+            defaults.set(currentBalance, forKey: "CurrentBalance")
+            self.balanceLabel.text = String(format: "%.2f", currentBalance)
+        } else {
+            currentBalance = defaults.double(forKey: "CurrentBalance")
+            self.balanceLabel.text = String(format: "%.2f", currentBalance)
+        }
+    }
+    
+    fileprivate func loadOldTrips() {
+        if let oldTrips = ArchiveUtil.loadTrips() {
+            trips = oldTrips
+        }
+    }
 
+    //MARK: Actions
     @IBAction func addCommomFare(_ sender: Any) {
         let today: Date = Date()
         let value: Float64 = 4.30
@@ -128,19 +136,5 @@ extension ViewController: UITableViewDataSource {
         }
         
         return cell
-    }
-}
-
-extension UserDefaults {
-    // check for is first launch - only true on first invocation after app install, false on all further invocations
-    // Note: Store this value in AppDelegate if you have multiple places where you are checking for this flag
-    static func isFirstLaunch() -> Bool {
-        let hasBeenLaunchedBeforeFlag = "hasBeenLaunchedBeforeFlag"
-        let isFirstLaunch = !UserDefaults.standard.bool(forKey: hasBeenLaunchedBeforeFlag)
-        if (isFirstLaunch) {
-            UserDefaults.standard.set(true, forKey: hasBeenLaunchedBeforeFlag)
-            UserDefaults.standard.synchronize()
-        }
-        return isFirstLaunch
     }
 }
