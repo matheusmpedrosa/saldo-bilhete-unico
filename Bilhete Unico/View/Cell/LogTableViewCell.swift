@@ -25,9 +25,12 @@ class LogTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(with tarifa: String, valor: String){
-        self.textLabel?.text = tarifa
-        self.detailTextLabel?.text = valor
+    func setup(trip: Trip){
+        self.textLabel?.text = trip.type
+        if let tripValue = trip.value {
+            self.detailTextLabel?.text = "R$ " + tripValue.description
+        }
+        
     }
 
 }

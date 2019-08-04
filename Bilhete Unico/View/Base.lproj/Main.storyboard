@@ -27,8 +27,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$ 23,58" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3J-Q6-abr">
-                                <rect key="frame" x="16" y="144" width="207" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23,58" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3J-Q6-abr">
+                                <rect key="frame" x="55" y="144" width="134" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="68C-uz-l0s"/>
                                 </constraints>
@@ -44,7 +44,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="+ R$ 4,30"/>
                                         <connections>
-                                            <action selector="adicionarTarifaComum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3WD-BB-dio"/>
+                                            <action selector="addCommomFare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvp-df-zMX"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vA-wX-ywr">
@@ -52,7 +52,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="+ R$ 3,76"/>
                                         <connections>
-                                            <action selector="adicionarTarifaValeTransporte:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qp1-UI-3NS"/>
+                                            <action selector="addVRFare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5nE-8n-go7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -92,14 +92,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyT-xe-u69">
+                                <rect key="frame" x="358" y="165" width="40" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="40Z-6f-Ilj"/>
+                                </constraints>
+                                <state key="normal" title="Editar"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-jo-7DF">
+                                <rect key="frame" x="16" y="159" width="31" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="q9A-jo-7DF" firstAttribute="bottom" secondItem="l3J-Q6-abr" secondAttribute="bottom" id="2EA-1v-gSF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gyT-xe-u69" secondAttribute="trailing" constant="16" id="8m5-EU-pTo"/>
+                            <constraint firstItem="q9A-jo-7DF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="9fx-MI-Z8j"/>
+                            <constraint firstItem="gyT-xe-u69" firstAttribute="bottom" secondItem="l3J-Q6-abr" secondAttribute="bottom" id="E0B-KE-Ohl"/>
                             <constraint firstItem="BW8-Ss-Ywe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Hkd-Nx-QLZ"/>
                             <constraint firstAttribute="bottom" secondItem="rtk-0v-ZIR" secondAttribute="bottom" id="MQE-uI-U0k"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VCu-6C-lBR" secondAttribute="trailing" constant="16" id="NZE-LT-jih"/>
                             <constraint firstItem="VCu-6C-lBR" firstAttribute="top" secondItem="l3J-Q6-abr" secondAttribute="bottom" constant="16" id="Njx-kg-u6z"/>
-                            <constraint firstItem="l3J-Q6-abr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TIL-cf-r4N"/>
+                            <constraint firstItem="l3J-Q6-abr" firstAttribute="leading" secondItem="q9A-jo-7DF" secondAttribute="trailing" constant="8" id="P6L-8Q-6o8"/>
                             <constraint firstItem="rtk-0v-ZIR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VG0-4Z-0i0"/>
                             <constraint firstItem="rtk-0v-ZIR" firstAttribute="top" secondItem="VCu-6C-lBR" secondAttribute="bottom" constant="16" id="XiA-un-KKb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rtk-0v-ZIR" secondAttribute="trailing" id="Zlj-Lc-Fsf"/>
@@ -111,10 +128,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="QSk-VT-9zm"/>
                     <connections>
-                        <outlet property="saldoLabel" destination="l3J-Q6-abr" id="hkc-Ft-643"/>
+                        <outlet property="balanceLabel" destination="l3J-Q6-abr" id="eLr-LY-Pez"/>
+                        <outlet property="commomFareButton" destination="jaO-55-k3o" id="Uvw-Vw-7nB"/>
                         <outlet property="tableView" destination="rtk-0v-ZIR" id="p1h-K9-J1h"/>
-                        <outlet property="tarifaComumButton" destination="jaO-55-k3o" id="CcG-iA-yV1"/>
-                        <outlet property="tarifaValeTransporteButton" destination="4vA-wX-ywr" id="7Pu-mg-lbJ"/>
+                        <outlet property="voucherFareButton" destination="4vA-wX-ywr" id="sTB-nf-Uac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

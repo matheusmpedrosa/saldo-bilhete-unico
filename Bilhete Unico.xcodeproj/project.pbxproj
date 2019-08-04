@@ -13,6 +13,7 @@
 		80BD0CA622F65EE1003267C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80BD0CA522F65EE1003267C7 /* Assets.xcassets */; };
 		80BD0CA922F65EE1003267C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80BD0CA722F65EE1003267C7 /* LaunchScreen.storyboard */; };
 		80BD0CB122F6648D003267C7 /* LogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD0CB022F6648D003267C7 /* LogTableViewCell.swift */; };
+		80BD0CB322F67AE4003267C7 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BD0CB222F67AE4003267C7 /* Trip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		80BD0CA822F65EE1003267C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80BD0CAA22F65EE1003267C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80BD0CB022F6648D003267C7 /* LogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewCell.swift; sourceTree = "<group>"; };
+		80BD0CB222F67AE4003267C7 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		80BD0C9D22F65EE0003267C7 /* Bilhete Unico */ = {
 			isa = PBXGroup;
 			children = (
-				80BD0C9E22F65EE0003267C7 /* AppDelegate.swift */,
+				80BD0CBC22F681F6003267C7 /* Resources */,
+				80BD0CB922F67E93003267C7 /* View */,
+				80BD0CB822F67C42003267C7 /* Model */,
+			);
+			path = "Bilhete Unico";
+			sourceTree = "<group>";
+		};
+		80BD0CB822F67C42003267C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				80BD0CB222F67AE4003267C7 /* Trip.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		80BD0CB922F67E93003267C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				80BD0CA022F65EE0003267C7 /* ViewController.swift */,
 				80BD0CA222F65EE0003267C7 /* Main.storyboard */,
+				80BD0CBA22F67EB2003267C7 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		80BD0CBA22F67EB2003267C7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
 				80BD0CB022F6648D003267C7 /* LogTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		80BD0CBC22F681F6003267C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80BD0C9E22F65EE0003267C7 /* AppDelegate.swift */,
 				80BD0CA522F65EE1003267C7 /* Assets.xcassets */,
 				80BD0CA722F65EE1003267C7 /* LaunchScreen.storyboard */,
 				80BD0CAA22F65EE1003267C7 /* Info.plist */,
 			);
-			path = "Bilhete Unico";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80BD0CB322F67AE4003267C7 /* Trip.swift in Sources */,
 				80BD0CB122F6648D003267C7 /* LogTableViewCell.swift in Sources */,
 				80BD0CA122F65EE0003267C7 /* ViewController.swift in Sources */,
 				80BD0C9F22F65EE0003267C7 /* AppDelegate.swift in Sources */,
