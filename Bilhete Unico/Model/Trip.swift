@@ -11,6 +11,8 @@ import Foundation
 enum TripType: String {
     case commom = "Comum"
     case valeTransporte = "Vale Transporte"
+    case income = "Depósito"
+    case edit = "Saldo alterado"
     
     func getTripType() -> String {
         return self.rawValue
@@ -26,15 +28,15 @@ enum TripValue: Float64 {
     }
 }
 
-
 class Trip: NSObject, NSCoding {
     var type: String?
     var value: Float64?
     var date: Date?
     
-    required init(type: TripType, value: TripValue, date: Date) {
+    required init(type: TripType, value: Float64, date: Date) {
         self.type = type.getTripType()
-        self.value = value.getTripValue()
+//        self.value = value.getTripValue()
+        self.value = value
         self.date = date
     }
     

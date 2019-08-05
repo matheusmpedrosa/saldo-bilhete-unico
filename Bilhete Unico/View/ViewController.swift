@@ -99,8 +99,11 @@ class ViewController: UIViewController {
             print("\(input) foram adicionados")
             var balance = self.defaults.double(forKey: "CurrentBalance")
             balance = balance + input
-            
+            let newTrip: Trip = Trip(type: .income, value: input, date: Date())
+            self.trips.append(newTrip)
+            ArchiveUtil.saveTrips(trips: self.trips)
             self.setNewBalance(with: balance)
+            self.tableView.reloadData()
         }
     }
     
@@ -119,7 +122,11 @@ class ViewController: UIViewController {
         showInputDialog(title: "Editar saldo", subtitle: "Digite o valor desejado", actionTitle: "Pronto", cancelTitle: "Cancelar", inputPlaceholder: "R$ 50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input) in
             if let input = input {
                 if let convertedInput = Double(input) {
+                    let newTrip: Trip = Trip(type: .edit, value: convertedInput, date: Date())
+                    self.trips.append(newTrip)
+                    ArchiveUtil.saveTrips(trips: self.trips)
                     self.setNewBalance(with: convertedInput)
+                    self.tableView.reloadData()
                 } else {
                     self.presentAlertWithOptions(title: "Valor inválido", message: "Aplique o valor desejado clicando em Editar", style: .alert, options: "Ok", completion: { (input) in
                     })
@@ -129,7 +136,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addCommomFare(_ sender: Any) {
-        let newTrip: Trip = Trip(type: .commom, value: .commom, date: today)
+        let newTrip: Trip = Trip(type: .commom, value: 4.30, date: today)
         
         trips.append(newTrip)
         ArchiveUtil.saveTrips(trips: trips)
@@ -142,7 +149,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addVRFare(_ sender: Any) {
-        let newTrip: Trip = Trip(type: .valeTransporte, value: .valeTransporte, date: today)
+        let newTrip: Trip = Trip(type: .valeTransporte, value: 3.76, date: today)
         
         trips.append(newTrip)
         ArchiveUtil.saveTrips(trips: trips)

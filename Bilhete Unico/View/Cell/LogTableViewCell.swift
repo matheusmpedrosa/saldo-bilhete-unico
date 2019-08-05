@@ -28,7 +28,22 @@ class LogTableViewCell: UITableViewCell {
     func setup(trip: Trip){
         self.textLabel?.text = trip.type
         if let tripValue = trip.value {
-            self.detailTextLabel?.text = "R$ " + tripValue.description
+            switch trip.type {
+            case "Comum":
+                self.detailTextLabel?.text = "- R$ " + tripValue.description
+                self.imageView?.image = #imageLiteral(resourceName: "outcome")
+            case "Vale Transporte":
+                self.detailTextLabel?.text = "- R$ " + tripValue.description
+                self.imageView?.image = #imageLiteral(resourceName: "outcome")
+            case "Depósito":
+                self.detailTextLabel?.text = "+ R$ " + tripValue.description
+                self.imageView?.image = #imageLiteral(resourceName: "income")
+            case "Saldo alterado":
+                self.detailTextLabel?.text = "R$ " + tripValue.description
+                self.imageView?.image = #imageLiteral(resourceName: "edit")
+            default:
+                self.imageView?.image = nil
+            }
         }
         
     }
