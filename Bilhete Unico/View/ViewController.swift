@@ -26,7 +26,6 @@ class ViewController: UIViewController {
 
     let defaults = UserDefaults.standard
     var currentBalance: Float64 = Float64()
-    let today: Date = Date()
     var trips: [Trip] = []
     
     
@@ -62,13 +61,14 @@ class ViewController: UIViewController {
         self.defaults.set(self.currentBalance, forKey: "CurrentBalance")
     }
     
-    fileprivate func askUserForCurrentBalance() {
-        //change currentBalance to your actual current balance
-        //alert goes here
-        showInputDialog(title: "Parece que é sua primeira vez por aqui!", subtitle: "Qual o valor do seu saldo atual?", actionTitle: "Continuar", cancelTitle: "Cancelar", inputPlaceholder: "50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input: String?) in
+    fileprivate func askUserForCurrentBalance() {        showInputDialog(title: "Parece que é sua primeira vez por aqui!", subtitle: "Qual o valor do seu saldo atual?", actionTitle: "Continuar", cancelTitle: "Cancelar", inputPlaceholder: "50,00", inputKeyboardType: .numbersAndPunctuation, cancelHandler: nil) { (input: String?) in
             if let input = input {
                 if let convertedInput = Double(input) {
+                    let newTrip: Trip = Trip(type: .income, value: convertedInput, date: Date())
+                    self.trips.append(newTrip)
+                    ArchiveUtil.saveTrips(trips: self.orderArray(arrTrips: self.trips))
                     self.setNewBalance(with: convertedInput)
+                    self.tableView.reloadData()
                 } else {
                     self.presentAlertWithOptions(title: "Valor inválido", message: "Aplique o valor desejado clicando em Editar", style: .alert, options: "Ok", completion: { (input) in
                     })
@@ -89,8 +89,15 @@ class ViewController: UIViewController {
     
     fileprivate func loadOldTrips() {
         if let oldTrips = ArchiveUtil.loadTrips() {
-            trips = oldTrips
+            trips = self.orderArray(arrTrips: oldTrips)
         }
+    }
+    
+    fileprivate func orderArray(arrTrips: [Trip]) -> [Trip]{
+        let orderedArray = trips.sorted(by: { $0.date!.compare($1.date!) == .orderedDescending })
+        print(orderedArray)
+        
+        return orderedArray
     }
     
     //MARK: Actions
@@ -101,7 +108,7 @@ class ViewController: UIViewController {
             balance = balance + input
             let newTrip: Trip = Trip(type: .income, value: input, date: Date())
             self.trips.append(newTrip)
-            ArchiveUtil.saveTrips(trips: self.trips)
+            ArchiveUtil.saveTrips(trips: self.orderArray(arrTrips: self.trips))
             self.setNewBalance(with: balance)
             self.tableView.reloadData()
         }
@@ -112,7 +119,7 @@ class ViewController: UIViewController {
             if input == 100.0 { //retorno para "Sim, apagar"
                 self.setNewBalance(with: 0.0)
                 self.trips.removeAll()
-                ArchiveUtil.saveTrips(trips: self.trips)
+                ArchiveUtil.saveTrips(trips: self.orderArray(arrTrips: self.trips))
                 self.tableView.reloadData()
             }
         }
@@ -124,7 +131,7 @@ class ViewController: UIViewController {
                 if let convertedInput = Double(input) {
                     let newTrip: Trip = Trip(type: .edit, value: convertedInput, date: Date())
                     self.trips.append(newTrip)
-                    ArchiveUtil.saveTrips(trips: self.trips)
+                    ArchiveUtil.saveTrips(trips: self.orderArray(arrTrips: self.trips))
                     self.setNewBalance(with: convertedInput)
                     self.tableView.reloadData()
                 } else {
@@ -136,10 +143,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addCommomFare(_ sender: Any) {
-        let newTrip: Trip = Trip(type: .commom, value: 4.30, date: today)
+        let newTrip: Trip = Trip(type: .commom, value: 4.30, date: Date())
         
         trips.append(newTrip)
-        ArchiveUtil.saveTrips(trips: trips)
+        ArchiveUtil.saveTrips(trips: self.orderArray(arrTrips: self.trips))
         
         if let value = newTrip.value {
             let newBalance = currentBalance - value
@@ -149,10 +156,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addVRFare(_ sender: Any) {
-        let newTrip: Trip = Trip(type: .valeTransporte, value: 3.76, date: today)
+        let newTrip: Trip = Trip(type: .valeTransporte, value: 3.76, date: Date())
         
         trips.append(newTrip)
-        ArchiveUtil.saveTrips(trips: trips)
+        ArchiveUtil.saveTrips(trips: self.orderArray(arrTrips: self.trips))
         
         if let value = newTrip.value {
             let newBalance = currentBalance - value
@@ -166,7 +173,6 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let formater: DateFormatter = DateFormatter()
         formater.dateFormat = "dd/MM"
-//        let result = formater.string(from: today)
 
         if trips.count > 0 {
             if let date = trips.first?.date {
