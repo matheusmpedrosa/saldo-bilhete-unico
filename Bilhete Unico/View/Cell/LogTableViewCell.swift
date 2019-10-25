@@ -31,16 +31,16 @@ class LogTableViewCell: UITableViewCell {
             switch trip.type {
             case "Comum":
                 self.detailTextLabel?.text = "- R$ " + tripValue.description
-                self.imageView?.image = #imageLiteral(resourceName: "outcome")
+//                self.imageView?.image = #imageLiteral(resourceName: "outcome")
             case "Vale Transporte":
                 self.detailTextLabel?.text = "- R$ " + tripValue.description
-                self.imageView?.image = #imageLiteral(resourceName: "outcome")
+//                self.imageView?.image = #imageLiteral(resourceName: "outcome")
             case "Depósito":
                 self.detailTextLabel?.text = "+ R$ " + tripValue.description
-                self.imageView?.image = #imageLiteral(resourceName: "income")
+//                self.imageView?.image = #imageLiteral(resourceName: "income")
             case "Saldo alterado":
                 self.detailTextLabel?.text = "R$ " + tripValue.description
-                self.imageView?.image = #imageLiteral(resourceName: "edit")
+//                self.imageView?.image = #imageLiteral(resourceName: "edit")
             default:
                 self.imageView?.image = nil
             }

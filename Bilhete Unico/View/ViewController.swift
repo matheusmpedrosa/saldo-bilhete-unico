@@ -13,9 +13,13 @@ class ViewController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var addBalanceButton: UIBarButtonItem!
     @IBOutlet weak var cleanAllData: UIBarButtonItem!
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var editBalanceButton: UIButton!
+    @IBOutlet weak var cardIDLabel: UILabel!
+    @IBOutlet weak var editBalanceButton: UIBarButtonItem!
+    @IBOutlet weak var commomFareBackgroundView: UIView!
     @IBOutlet weak var commomFareButton: UIButton!
+    @IBOutlet weak var voucherFareBackgroundView: UIView!
     @IBOutlet weak var voucherFareButton: UIButton!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -38,21 +42,23 @@ class ViewController: UIViewController {
     }
     
     fileprivate func setupLayout() {
-        //View
-        self.title = "Bilhete Único"
+        //Card View
+        cardView.backgroundColor = .lightGray
+        cardView.layer.cornerRadius = 12
+        
+        //TableView
+        tableView.backgroundColor = .clear
         
         //Buttons
-        let cornerRadius: CGFloat = 4
-        let borderWidth: CGFloat = 1
-        let borderColor: CGColor = self.view.tintColor.cgColor
+        let cornerRadius: CGFloat = 8
         
-        self.commomFareButton.layer.cornerRadius = cornerRadius
-        self.commomFareButton.layer.borderWidth = borderWidth
-        self.commomFareButton.layer.borderColor = borderColor
+        commomFareButton.layer.cornerRadius = cornerRadius
+        commomFareButton.backgroundColor = .clear
+        commomFareBackgroundView.backgroundColor = .blue
         
-        self.voucherFareButton.layer.cornerRadius = cornerRadius
-        self.voucherFareButton.layer.borderWidth = borderWidth
-        self.voucherFareButton.layer.borderColor = borderColor
+        voucherFareButton.layer.cornerRadius = cornerRadius
+        voucherFareButton.backgroundColor = .clear
+        voucherFareBackgroundView.backgroundColor = .green
     }
     
     fileprivate func setNewBalance(with newValue: Float64) {
